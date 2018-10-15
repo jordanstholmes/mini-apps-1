@@ -1,7 +1,7 @@
 class BoardState {
-  constructor(boardSize) {
+  constructor(boardSize = 3) {
     this.boardSize = boardSize;
-    this.lastMove = true;
+    this.lastMove = false;
     this.board = this.generateBoard();
     this.gameOver = false;
     this.gameWonMessage = null;
@@ -14,12 +14,12 @@ class BoardState {
   }
 
   toggleMove([row, col]) {
-    this.board[row][col] = this.lastMove;
+    this.board[row][col] = this.lastMove ? 1 : -1;
   }
 
   getNextMoveType() {
     this.lastMove = !this.lastMove;
-    return this.lastMove;
+    return this.lastMove ? 'x' : 'o';
   }
 
   checkForWin(move) {
@@ -29,8 +29,8 @@ class BoardState {
       var total = this[`_check${check}`](move);
       this._checkTotal(total);
     });
-
     if (this.gameWonMessage) {
+
       this.gameOver = true;
       return this.gameWonMessage;
     }
@@ -43,7 +43,7 @@ class BoardState {
   }
 
   _checkHorizontal([row, col]) {
-    return GameState.board[row].reduce((acc, val) => {
+    return this.board[row].reduce((acc, val) => {
       return acc + val;
     });
   }
@@ -52,20 +52,20 @@ class BoardState {
     var row, col, total;
     row = col = total = 0;
 
-    while (row < GameState.boardSize) {
-      total += GameState.board[row][col];
+    while (row < this.boardSize) {
+      total += this.board[row][col];
       row = col += 1;
     }
     return total;
   }
 
   _checkMinorDiagonal([row, col]) {
-    var row = GameState.boardSize - 1;
+    var row = this.boardSize - 1;
     var col = 0; 
     var total = 0;
     
     while (row >= 0) {
-      total += GameState.board[row][col];
+      total += this.board[row][col];
       row--; 
       col++;
     }
@@ -74,12 +74,16 @@ class BoardState {
   }
 
   _checkTotal(total) {
-    if (total === this.boardSize) {
-      this.gameWonMessage = 'X WINS!';
-    } else if (total === -(this.boardSize)) {
-      this.gameWonMessage = 'O WINS!';
-    } else {
-      this.gameWonMessage = null;
+    if (!this.gameWonMessage) {
+      if (total === this.boardSize) {
+        this.gameWonMessage = 'X WINS!';
+      } else if (total === -(this.boardSize)) {
+        this.gameWonMessage = 'O WINS!';
+      } else {
+        this.gameWonMessage = null;
+      }
     }
   }
 }
+
+// export default BoardState;
