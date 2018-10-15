@@ -5,7 +5,7 @@ const gameBoard = document.getElementById('game-board');
 const GameState = {
   lastMove: 'X',
   getNextMoveType: function() {
-    GameState.lastMove = GameState.lastMove === 'X' ? 'O' : 'X';
+    GameState.lastMove = GameState.lastMove === 'x' ? 'o' : 'x';
     return GameState.lastMove;
   }
 }
@@ -18,7 +18,10 @@ const Controller = {
     });
     
     gameBoard.addEventListener('click', (e) => {
-      console.log(e.target);
+      const square = e.target;
+      if (square.innerHTML === '&nbsp;') {
+        square.innerHTML = GameState.getNextMoveType();
+      }
     });
   }
 
