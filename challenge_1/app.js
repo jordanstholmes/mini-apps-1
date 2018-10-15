@@ -23,11 +23,28 @@ const GameState = {
     GameState.lastMove = GameState.lastMove === 1 ? -1 : 1;
     return GameState.lastMove === 1 ? 'x' : 'o';
   },
-  _checkVerticalWin: function() {
-
+  checkForWin: function(move) {
+    console.log(GameState._checkHorizontalWin(move));
   },
-  _checkHorizontalWin: function() {
+  _checkVerticalWin: function([row, col]) {
+    // const columnTotal = GameState.board.reduce(() => {
 
+    // });
+  },
+  _checkHorizontalWin: function([row, col]) {
+    const rowTotal = GameState.board[row].reduce((acc, val) => {
+      return acc + val;
+    });
+    return GameState._checkTotal(rowTotal);
+  },
+  _checkTotal: function(total) {
+    if (total === 3) {
+      return 'X WINS!';
+    } else if (total === -3) {
+      return 'O WINS!';
+    } else {
+      return null;
+    }
   },
   _checkMajorDiagonalWin: function() {
 
@@ -48,8 +65,12 @@ const Controller = {
     gameBoard.addEventListener('click', (e) => {
       const square = e.target;
       if (square.innerHTML === '&nbsp;') {
+
+        var move = square.id.split('');
+
         View.addMove(square, GameState.getNextMoveType());
-        GameState.toggleMove(square.id.split(''));
+        GameState.toggleMove(move);
+        GameState.checkForWin(move);
       }
       console.log(GameState.board);
     });
