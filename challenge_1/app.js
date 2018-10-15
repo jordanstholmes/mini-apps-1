@@ -30,9 +30,7 @@ const GameState = {
     console.log(GameState._checkHorizontalWin(move));
   },
   _checkVerticalWin: function([row, col]) {
-    // const columnTotal = GameState.board.reduce(() => {
-
-    // });
+    
   },
   _checkHorizontalWin: function([row, col]) {
     const rowTotal = GameState.board[row].reduce((acc, val) => {
@@ -41,9 +39,9 @@ const GameState = {
     return GameState._checkTotal(rowTotal);
   },
   _checkTotal: function(total) {
-    if (total === 3) {
+    if (total === GameState.boardSize) {
       return 'X WINS!';
-    } else if (total === -3) {
+    } else if (total === -(GameState.boardSize)) {
       return 'O WINS!';
     } else {
       return null;
