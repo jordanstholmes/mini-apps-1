@@ -1,4 +1,3 @@
-document.getElementById('game-board');
 const resetButton = document.getElementById('reset');
 const gameBoard = document.getElementById('game-board');
 
@@ -28,7 +27,16 @@ const GameState = {
     return GameState.lastMove === 1 ? 'x' : 'o';
   },
   checkForWin: function(move) {
-    console.log(GameState._checkVerticalWin(move));
+    var checks = ['_checkVerticalWin', '_checkHorizontalWin', '_checkMajorDiagonalWin'];
+    var result = null;
+    checks.forEach((check) => {
+      if (!result) {
+        result = GameState[check](move);
+      }
+    });
+    if (result) {
+      console.log(result);
+    }
   },
   _checkVerticalWin: function([row, col]) {
     const colTotal = GameState.board.reduce((acc, row) => {
@@ -52,7 +60,13 @@ const GameState = {
     }
   },
   _checkMajorDiagonalWin: function() {
-
+    var row, col, total;
+    row = col = total = 0;
+    while (row < GameState.boardSize) {
+      total += GameState.board[row][col];
+      row = col += 1;
+    }
+    return GameState._checkTotal(total);
   },
   _checkMinorDiagonalWin: function() {
 
@@ -77,7 +91,7 @@ const Controller = {
         GameState.toggleMove(move);
         GameState.checkForWin(move);
       }
-      console.log(GameState.board);
+      // console.log(GameState.board);
     });
   }
 
