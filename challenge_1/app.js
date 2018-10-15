@@ -27,7 +27,7 @@ const GameState = {
     return GameState.lastMove === 1 ? 'x' : 'o';
   },
   checkForWin: function(move) {
-    var checks = ['_checkVerticalWin', '_checkHorizontalWin', '_checkMajorDiagonalWin'];
+    var checks = ['_checkVerticalWin', '_checkHorizontalWin', '_checkMajorDiagonalWin', '_checkMinorDiagonalWin'];
     var result = null;
     checks.forEach((check) => {
       if (!result) {
@@ -69,10 +69,18 @@ const GameState = {
     return GameState._checkTotal(total);
   },
   _checkMinorDiagonalWin: function() {
-
+    var row = GameState.boardSize - 1;
+    var col = 0; 
+    var total = 0;
+    
+    while (row >= 0) {
+      total += GameState.board[row][col];
+      row--; 
+      col++;
+    }
+    return GameState._checkTotal(total);
   }
-
-}
+};
 
 const Controller = {
   addListeners: () => {
@@ -91,11 +99,9 @@ const Controller = {
         GameState.toggleMove(move);
         GameState.checkForWin(move);
       }
-      // console.log(GameState.board);
     });
   }
-
-}
+};
 
 const View = {
   clearBoardDisplay: function() {
@@ -109,7 +115,7 @@ const View = {
   addMove: function(square, type) {
     square.innerHTML = type;
   }
-}
+};
 
 GameState.generateBoard();
 Controller.addListeners();
