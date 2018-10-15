@@ -13,8 +13,14 @@ const GameState = {
 const Controller = {
   addListeners: () => {
     resetButton.addEventListener('click', (e) => {
+      const table = document.getElementById('game-board');
+      allSquares = table.getElementsByTagName('button');
 
-      console.log(GameState.getNextMoveType());
+      for (var i = 0; i < allSquares.length; i++) {
+        allSquares[i].innerHTML = '&nbsp;';
+      }
+
+      console.log(allSquares);
     });
     
     gameBoard.addEventListener('click', (e) => {
