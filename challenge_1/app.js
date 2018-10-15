@@ -21,16 +21,20 @@ const GameState = {
         GameState.board[row][col] = 0;
       }
     }
+    GameState.lastMove = -1;
   },
   getNextMoveType: function() {
     GameState.lastMove = GameState.lastMove === 1 ? -1 : 1;
     return GameState.lastMove === 1 ? 'x' : 'o';
   },
   checkForWin: function(move) {
-    console.log(GameState._checkHorizontalWin(move));
+    console.log(GameState._checkVerticalWin(move));
   },
   _checkVerticalWin: function([row, col]) {
-    
+    const colTotal = GameState.board.reduce((acc, row) => {
+      return acc + row[col];
+    }, 0);
+    return GameState._checkTotal(colTotal);
   },
   _checkHorizontalWin: function([row, col]) {
     const rowTotal = GameState.board[row].reduce((acc, val) => {
