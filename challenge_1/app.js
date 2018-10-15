@@ -40,16 +40,9 @@ const GameState = {
 
 const Controller = {
   addListeners: () => {
-    resetButton.addEventListener('click', (e) => {
-      // const table = document.getElementById('game-board');
-      // allSquares = table.getElementsByTagName('button');
-
-      // for (var i = 0; i < allSquares.length; i++) {
-      //   allSquares[i].innerHTML = '&nbsp;';
-      // }
-
-      // GameState.toggleMove(1, 1);
-      console.log(GameState.board);
+    resetButton.addEventListener('click', () => {
+      View.clearBoardDisplay();
+      GameState.reset();
     });
     
     gameBoard.addEventListener('click', (e) => {
@@ -58,9 +51,21 @@ const Controller = {
         square.innerHTML = GameState.getNextMoveType();
         GameState.toggleMove(square.id.split(''));
       }
+      console.log(GameState.board);
     });
   }
 
+}
+
+const View = {
+  clearBoardDisplay: function() {
+    const table = document.getElementById('game-board');
+    allSquares = table.getElementsByTagName('button');
+
+    for (var i = 0; i < allSquares.length; i++) {
+      allSquares[i].innerHTML = '&nbsp;';
+    }
+  }
 }
 
 Controller.addListeners();
