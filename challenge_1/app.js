@@ -3,12 +3,15 @@ const resetButton = document.getElementById('reset');
 const gameBoard = document.getElementById('game-board');
 
 const GameState = {
+  boardSize: 3,
   lastMove: -1,
-  board: [
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0]
-  ],
+  board: [],
+  generateBoard: function() {
+    GameState.board = Array(GameState.boardSize).fill(undefined).map((row) => {
+      return Array(GameState.boardSize).fill(0);
+    });
+    console.log(GameState.board);
+  },
   toggleMove: function([row, col]) {
     GameState.board[row][col] = GameState.lastMove;
   },
@@ -92,6 +95,7 @@ const View = {
   }
 }
 
+GameState.generateBoard();
 Controller.addListeners();
 
 
