@@ -5,6 +5,7 @@ const GameState = {
   boardSize: 3,
   lastMove: -1,
   board: [],
+  gameOver: false,
   generateBoard: function() {
     GameState.board = Array(GameState.boardSize).fill(undefined).map((row) => {
       return Array(GameState.boardSize).fill(0);
@@ -21,6 +22,7 @@ const GameState = {
       }
     }
     GameState.lastMove = -1;
+    GameState.gameOver = false;
   },
   getNextMoveType: function() {
     GameState.lastMove = GameState.lastMove === 1 ? -1 : 1;
@@ -35,7 +37,8 @@ const GameState = {
       }
     });
     if (result) {
-      console.log(result);
+      GameState.gameOver = true;
+      return result;
     }
   },
   _checkVerticalWin: function([row, col]) {
@@ -85,35 +88,42 @@ const GameState = {
 const Controller = {
   addListeners: () => {
     resetButton.addEventListener('click', () => {
-      View.clearBoardDisplay();
+      View.resetDisplay();
       GameState.reset();
     });
     
     gameBoard.addEventListener('click', (e) => {
       const square = e.target;
-      if (square.innerHTML === '&nbsp;') {
+      if (square.innerHTML === '&nbsp;' && !GameState.gameOver) {
 
         var move = square.id.split('');
 
         View.addMove(square, GameState.getNextMoveType());
         GameState.toggleMove(move);
-        GameState.checkForWin(move);
+        var gameWon = GameState.checkForWin(move);
+        if (gameWon) {
+          View.displayWinner(gameWon);
+        }
       }
     });
   }
 };
 
 const View = {
-  clearBoardDisplay: function() {
+  resetDisplay: function() {
     const table = document.getElementById('game-board');
     allSquares = table.getElementsByTagName('button');
 
     for (var i = 0; i < allSquares.length; i++) {
       allSquares[i].innerHTML = '&nbsp;';
     }
+    document.getElementsByTagName('h1')[0].innerHTML = 'Tic Tac Toe';
   },
   addMove: function(square, type) {
     square.innerHTML = type;
+  },
+  displayWinner: function(winResults) {
+    document.getElementsByTagName('h1')[0].innerHTML = winResults;
   }
 };
 
