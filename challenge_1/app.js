@@ -127,8 +127,10 @@ const View = {
   }
 };
 
-GameState.generateBoard();
-Controller.addListeners();
+document.addEventListener('DOMContentLoaded', (e) => {
+  GameState.generateBoard();
+  Controller.addListeners();
+});
 
 
 
