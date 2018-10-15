@@ -48,7 +48,7 @@ const Controller = {
     gameBoard.addEventListener('click', (e) => {
       const square = e.target;
       if (square.innerHTML === '&nbsp;') {
-        square.innerHTML = GameState.getNextMoveType();
+        View.addMove(square, GameState.getNextMoveType());
         GameState.toggleMove(square.id.split(''));
       }
       console.log(GameState.board);
@@ -65,6 +65,9 @@ const View = {
     for (var i = 0; i < allSquares.length; i++) {
       allSquares[i].innerHTML = '&nbsp;';
     }
+  },
+  addMove: function(square, type) {
+    square.innerHTML = type;
   }
 }
 
