@@ -28,11 +28,11 @@ class Controller {
 
         var move = square.id.split('');
 
-        View.addMove(square, Model.getNextMoveType());
-        Model.toggleMove(move);
-        var gameWon = Model.checkForWin(move);
+        View.addMove(square, this.Model.getNextMoveType());
+        this.Model.toggleMove(move);
+        var gameWon = this.Model.checkForWin(move);
         if (gameWon) {
-          View.displayWinner(gameWon);
+          this.View.displayWinner(gameWon);
         }
       }
     });

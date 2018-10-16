@@ -1,40 +1,4 @@
-boardState = new BoardState();
-
-const Controller = {
-
-  resetButton: undefined,
-
-  boardElement: undefined,
-
-  addListeners: () => {
-    Controller.resetButton = document.getElementById('reset');
-    Controller.boardElement = document.getElementById('game-board'); 
-
-    resetButton.addEventListener('click', () => {
-      View.resetDisplay();
-      boardState = new window.BoardState();
-    });
-    
-    gameBoard.addEventListener('click', (e) => {
-      const square = e.target;
-      if (square.innerHTML === '&nbsp;' && !boardState.gameOver) {
-
-        var move = square.id.split('');
-
-        View.addMove(square, boardState.getNextMoveType());
-        boardState.toggleMove(move);
-        var gameWon = boardState.checkForWin(move);
-        if (gameWon) {
-          View.displayWinner(gameWon);
-        }
-      }
-    });
-  },
-
-  addResetListener: () => {
-
-  }
-};
+var controller; 
 
 const View = {
   resetDisplay: function() {
@@ -55,5 +19,5 @@ const View = {
 };
 
 document.addEventListener('DOMContentLoaded', (e) => {
-  Controller.addListeners();
+  controller = new Controller(new BoardState(), View);
 });
