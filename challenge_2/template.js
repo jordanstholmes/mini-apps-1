@@ -16,11 +16,10 @@ const templateStr =
       <button type='submit'>Convert</button>
     </form>
 
-    <textarea>Just a test</textarea>
+    <textarea><%= jsonToConvert %></textarea>
 
   </body>
 
 </html>`
 
 module.exports = _.template(templateStr);
-// <%-jsonToConvert%>
