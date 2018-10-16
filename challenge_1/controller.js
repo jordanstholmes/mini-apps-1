@@ -23,18 +23,26 @@ class Controller {
 
   _addMoveListener() {
     this.boardElement.addEventListener('click', (e) => {
+      if (e.target.tagName !== 'BUTTON') { return; }
       const square = e.target;
-      if (square.innerHTML === '&nbsp;' && !this.Model.gameOver) {
+      const move = square.id.split('');
 
-        var move = square.id.split('');
-
-        View.addMove(square, this.Model.getNextMoveType());
-        this.Model.toggleMove(move);
-        var gameWon = this.Model.checkForWin(move);
-        if (gameWon) {
-          this.View.displayWinner(gameWon);
-        }
-      }
+      this._handleMove(move, square);
+      this._handleWin(move);
     });
+  }
+
+  _handleMove(move, square) {
+    if (this.Model.isValidMove(move)) {
+      this.View.addMove(square, this.Model.getNextMoveType());
+      this.Model.toggleMove(move);
+    }
+  }
+
+  _handleWin(move) {
+    const gameWon = this.Model.checkForWin(move);
+    if (gameWon) {
+      this.View.displayWinner(gameWon);
+    }
   }
 }

@@ -2,16 +2,11 @@ class BoardState {
   constructor(boardSize = 3) {
     this.boardSize = boardSize;
     this.lastMove = false;
-    this.board = this.generateBoard();
+    this.board = this._generateBoard();
     this.gameOver = false;
     this.gameWonMessage = null;
   }
 
-  generateBoard() {
-    return Array(this.boardSize).fill(undefined).map((row) => {
-      return Array(this.boardSize).fill(0);
-    });
-  }
 
   toggleMove([row, col]) {
     this.board[row][col] = this.lastMove ? 1 : -1;
@@ -20,6 +15,13 @@ class BoardState {
   getNextMoveType() {
     this.lastMove = !this.lastMove;
     return this.lastMove ? 'x' : 'o';
+  }
+
+  isValidMove(move) {
+    if (!this._getMoveValue(move) && !this.gameOver) {
+      return true;
+    }
+    return false;
   }
 
   checkForWin(move) {
@@ -34,6 +36,12 @@ class BoardState {
       this.gameOver = true;
       return this.gameWonMessage;
     }
+  }
+  
+  _generateBoard() {
+    return Array(this.boardSize).fill(undefined).map((row) => {
+      return Array(this.boardSize).fill(0);
+    });
   }
 
   _checkVertical([row, col]) {
@@ -71,6 +79,10 @@ class BoardState {
     }
 
     return total;  
+  }
+
+  _getMoveValue([row, col]) {
+    return this.board[row][col];
   }
 
   _checkTotal(total) {
