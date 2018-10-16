@@ -1,10 +1,5 @@
 class Controller {
-
-  /*
-  Factor out checking the view for data about the state of the game
-  */
-
-
+  
   constructor(model, view) {
     this.resetBtnElement = document.getElementById('reset');
     this.boardElement = document.getElementById('game-board');
