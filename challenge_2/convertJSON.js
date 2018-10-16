@@ -1,3 +1,3 @@
 module.exports = (json) => {
-  console.log(json);
+  console.log(JSON.parse(json));
 }
