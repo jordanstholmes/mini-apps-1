@@ -14,8 +14,8 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'client')));
 
 app.post('/handle-json', upload.none(), (req, res, next) => {
-  JSONConverter(req.body.jsonToConvert);
-  // console.log(req.body);
+  console.log(JSONConverter(req.body.jsonToConvert));
+  
   res.end();
   // res.send(template(req.body));
 });

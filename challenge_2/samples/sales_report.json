@@ -3,6 +3,7 @@
   "lastName": "Wyattson",
   "county": "San Mateo",
   "city": "San Mateo",
+  "dog": "buddy",
   "role": "Broker",
   "sales": 1000000,
   "children": [
