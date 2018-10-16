@@ -9,9 +9,9 @@
 
   <body>
 
-    <form action='/handle-json' method='post'>
-      <label for='json-input'>Input JSON</label>
-      <textarea id='json-input' style='display:block;'>JSON goes here...</textarea>
+    <form action='/handle-json' method='post' enctype="multipart/form-data">
+      <!-- <label for='json-input'>Input JSON</label> -->
+      <input type='text' name='jsonToConver'/>
       <button type='submit'>Convert</button>
     </form>
 
