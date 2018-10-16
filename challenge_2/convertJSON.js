@@ -2,11 +2,11 @@ module.exports = (json) => {
   const parsedJSON = JSON.parse(json);
   // console.log(parsedJSON);
 
-  console.log(_getHeadersString(parsedJSON));
+  console.log(_getHeaders(parsedJSON));
   
 }
 
-function _getHeadersString(jsonObj) {
+function _getHeaders(jsonObj) {
 
   function getHeaders(obj) {
     Object.keys(obj).forEach(key => headers.add(key));
@@ -18,8 +18,19 @@ function _getHeadersString(jsonObj) {
 
   var headers = new Set();
   getHeaders(jsonObj);
-  headers.delete('children'));
+  headers.delete('children');
 
-  return Array.from(headers).join(',');
+  return headers;
+}
+
+function _getHeadersStr(set) {
+  return Array.from(headers).join(',') + '\n';
+}
+
+function _getRowsStrings(jsonObj, headers) {
+
+  function getRows() {
+
+  }
 }
 
