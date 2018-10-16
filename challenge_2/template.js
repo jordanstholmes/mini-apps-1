@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+const _ = require('underscore');
+
+const templateStr = 
+`<!DOCTYPE html>
 <html>
 
   <head>
@@ -9,13 +12,15 @@
   <body>
 
     <form action='/handle-json' method='post' enctype="multipart/form-data">
-      <!-- <label for='json-input'>Input JSON</label> -->
       <input type='text' name='jsonToConvert'/>
       <button type='submit'>Convert</button>
     </form>
 
+    <textarea>Just a test</textarea>
+
   </body>
 
-</html>
+</html>`
 
-
+module.exports = _.template(templateStr);
+// <%-jsonToConvert%>

@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "jquery": "^3.3.1",
-    "multer": "^1.4.1"
+    "multer": "^1.4.1",
+    "underscore": "^1.9.1"
   }
 }
