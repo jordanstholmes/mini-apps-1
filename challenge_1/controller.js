@@ -10,6 +10,8 @@ class Controller {
     this.boardElement = document.getElementById('game-board');
     this.Model = model;
     this.View = view;
+    this._addResetListener();
+    this._addMoveListener();
   }
 
   _addResetListener() {
@@ -35,37 +37,4 @@ class Controller {
       }
     });
   }
-
 }
-
-
-const Controller = {
-
-  resetButton: undefined,
-
-  boardElement: undefined,
-
-  addListeners: () => { 
-
-    
-    
-    gameBoard.addEventListener('click', (e) => {
-      const square = e.target;
-      if (square.innerHTML === '&nbsp;' && !boardState.gameOver) {
-
-        var move = square.id.split('');
-
-        View.addMove(square, boardState.getNextMoveType());
-        boardState.toggleMove(move);
-        var gameWon = boardState.checkForWin(move);
-        if (gameWon) {
-          View.displayWinner(gameWon);
-        }
-      }
-    });
-  },
-
-  addResetListener: () => {
-
-  }
-};
