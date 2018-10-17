@@ -1,0 +1,9 @@
+html
+  head
+  title JSON to CSV Converter
+  body
+    form(action='/handle-json' method='post' enctype='multipart/form-data' margin='none')
+      button(type='submit') Convert
+      br 
+      input(type='file' name='jsonToConvert')
+    textarea(style='height:200px;width:400px') #{csv}

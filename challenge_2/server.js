@@ -10,14 +10,15 @@ const upload = multer();
 
 const port = 3000;
 const app = express();
+app.set('views', './views');
+app.set('view engine', 'pug');
 
 app.use(express.static(path.join(__dirname, 'client')));
 
 app.post('/handle-json', upload.single('jsonToConvert'), (req, res, next) => {
-  // console.log(req.file.buffer.toString());
   const csv = JSONConverter(req.file.buffer.toString());
   
-  res.send(template({csv}));
+  res.render('index', {csv});
   // res.end();
 });
 
