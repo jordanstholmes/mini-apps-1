@@ -5,7 +5,7 @@
   "main": "babel.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "babel": "npx babel client --out-dir lib -w --source-maps inline"
   },
   "keywords": [],
@@ -20,6 +20,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "express": "^4.16.4",
+    "mongodb": "^3.1.8",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
   }
