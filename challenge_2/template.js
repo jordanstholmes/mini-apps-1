@@ -12,11 +12,11 @@ const templateStr =
   <body>
 
     <form action='/handle-json' method='post' enctype="multipart/form-data">
-      <input type='text' name='jsonToConvert'/>
-      <button type='submit'>Convert</button>
+      <button type='submit'>Convert</button><br>
+      <textarea type='text' name='jsonToConvert' style='height:200px;width:400px'></textarea>
     </form>
 
-    <textarea><%= jsonToConvert %></textarea>
+    <textarea style='height:200px;width:400px'><%= csv %></textarea>
 
   </body>
 
