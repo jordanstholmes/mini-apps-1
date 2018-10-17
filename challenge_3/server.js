@@ -14,7 +14,7 @@ const dbURL = 'mongodb://localhost:27017';
 const dbName = 'checkout';
 var db;
 
-MongoClient.connect(dbURL, (err, client) => {
+MongoClient.connect(dbURL, { useNewUrlParser: true }, (err, client) => {
   if (err) {
     console.log(err);
   }
