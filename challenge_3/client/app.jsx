@@ -1,9 +1,22 @@
 
-function TestComponent() {
+function NavButton() {
   return (
-    <h1>Now I say something different</h1>
+    <div>
+      <button>checkout</button>
+      <NameEmailPassword />
+    </div>
   );
 }
 
-ReactDOM.render(<TestComponent />, document.getElementById('root'));
+function NameEmailPassword() {
+  return (
+    <form>
+      <label>Name</label><input type='text'></input>
+      <label>Email</label><input type='text'></input>
+      <label>Password</label><input type='text'></input>
+    </form>
+  );
+}
+
+ReactDOM.render(<NavButton />, document.getElementById('root'));
 
