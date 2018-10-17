@@ -2,7 +2,7 @@ class App extends React.Component{
   constructor(props) {
     super(props);
     this.forms = ['', <Form1 />, <Form2 />, <Form3 />, <ConfirmationPage />];
-    this.buttons = ['Checkout', 'Next', 'Next', 'Next'];
+    this.buttons = ['Checkout', 'Next', 'Next', 'Next', 'Purchase'];
     this.maxFormNum = 4;
     this.state = {form: 0};
   }
@@ -15,7 +15,9 @@ class App extends React.Component{
   render() {
     return (
       <div id='app'>
-        <NavButton buttonClickHandler={this.buttonClickHandler.bind(this)}/>
+        <NavButton
+          buttonClickHandler={this.buttonClickHandler.bind(this)}
+          buttonText={this.buttons[this.state.form]} />
         {
           this.forms[this.state.form]
         }
@@ -27,7 +29,7 @@ class App extends React.Component{
 function NavButton(props) {
   return (
     <div>
-      <button onClick={props.buttonClickHandler}>checkout</button>
+      <button onClick={props.buttonClickHandler}>{props.buttonText}</button>
     </div>
   );
 }
