@@ -1,14 +1,21 @@
 class App extends React.Component{
   constructor(props) {
     super(props);
-    this.forms = ['', <Form1 />, <Form2 />, <Form3 />];
-    this.state = {form: 0}
+    this.forms = ['', <Form1 />, <Form2 />, <Form3 />, <ConfirmationPage />];
+    this.buttons = ['Checkout', 'Next', 'Next', 'Next'];
+    this.maxFormNum = 4;
+    this.state = {form: 0};
+  }
+
+  buttonClickHandler() {
+    const nextFormNum = this.state.form === this.maxFormNum ? 0 : this.state.form + 1;
+    this.setState({ form: nextFormNum }); 
   }
 
   render() {
     return (
       <div id='app'>
-        <NavButton />
+        <NavButton buttonClickHandler={this.buttonClickHandler.bind(this)}/>
         {
           this.forms[this.state.form]
         }
@@ -20,7 +27,7 @@ class App extends React.Component{
 function NavButton(props) {
   return (
     <div>
-      <button>checkout</button>
+      <button onClick={props.buttonClickHandler}>checkout</button>
     </div>
   );
 }
@@ -54,11 +61,31 @@ function Form3(props) {
   return (
     <form>
       <h2>Credit Card Information</h2>
-      <label>Car Number:</label><input type='text'></input>
+      <label>Card Number:</label><input type='text'></input>
       <label>Exp:</label><input type='text'></input>
       <label>CVV:</label><input type='text'></input>
       <label>Zip Code:</label><input type='text'></input>
     </form>
+  );
+}
+
+function ConfirmationPage(props) {
+  return (
+    <div>
+      <div>Name:</div><span>Bob</span>
+      <div>Email:</div><span>bob@gmail.com</span>
+      <div>Password:</div><span>123Pass</span>
+      <div>Line 1:</div><span>1234 A Street</span>
+      <div>Line 2:</div><span></span>
+      <div>City:</div><span>San Francisco</span>
+      <div>State:</div><span>CA</span>
+      <div>Zipcode:</div><span>94901</span>
+      <div>Phone Number:</div><span>123 456 789</span>
+      <div>Card Number:</div><span>123894985</span>
+      <div>Exp:</div><span>12/24/2018</span>
+      <div>CVV:</div><span>233</span>
+      <div>Zip Code:</div><span>94901</span>
+    </div>
   );
 }
 
@@ -68,10 +95,6 @@ ReactDOM.render(<App />, document.getElementById('root'));
 /****************************************************
 CONTROLLERS
 ****************************************************/
-
-function buttonClickHandler() {
-
-}
 
 
 
