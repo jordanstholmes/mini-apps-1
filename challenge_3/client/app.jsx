@@ -7,7 +7,6 @@ const formTypes = {
 class App extends React.Component{
   constructor(props) {
     super(props);
-    // this.forms = ['', <Form1 />, <Form2 />, <Form3 />, <ConfirmationPage />];
     this.formNames = ['', 'Account Creation', 'Address', 'Credit Card Information'];
     this.buttons = ['Checkout', 'Next', 'Next', 'Next', 'Purchase'];
     this.maxFormNum = 4;
@@ -54,18 +53,6 @@ function Form(props) {
   );
 }
 
-// function Form(props) {
-//   return (
-//     <form>
-//       <h2>Account Creation</h2>
-//       <label>Name:</label><input type='text'></input>
-//       <label>Email:</label><input type='text'></input>
-//       <label>Password:</label><input type='text'></input>
-//     </form>
-//   );
-// }
-
-
 function NavButton(props) {
   return (
     <div>
@@ -73,21 +60,6 @@ function NavButton(props) {
     </div>
   );
 }
-
-
-// function Form2(props) {
-//   return (
-//     <form>
-//       <h2>Address</h2>
-//       <label>Line 1:</label><input type='text'></input>
-//       <label>Line 2:</label><input type='text'></input>
-//       <label>City:</label><input type='text'></input>
-//       <label>State:</label><input type='text'></input>
-//       <label>Zipcode:</label><input type='text'></input>
-//       <label>Phone Number:</label><input type='text'></input>
-//     </form>
-//   );
-// }
 
 function ConfirmationPage(props) {
   return (
