@@ -6,6 +6,7 @@ const MongoClient = require('mongodb').MongoClient;
 const mongodb = require('mongodb');
 const dummyDataArray = require('./dummyData.js');
 const _ = require('underscore');
+const path = require('path');
 /****************************************************
 GET CONNECTION TO DATABASE
 ****************************************************/
@@ -67,6 +68,7 @@ EXPRESS SETUP APP
 
 const port = 3000;
 const app = express();
+app.use(express.static(path.join(__dirname,'public')));
 
 /****************************************************
 API
