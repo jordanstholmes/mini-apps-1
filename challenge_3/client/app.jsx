@@ -1,8 +1,9 @@
-const React = require('react');
 
-function testComponent() {
+function TestComponent() {
   return (
-    <h1>I am a test react element</h1>
+    <h1>Now I say something different</h1>
   );
 }
+
+ReactDOM.render(<TestComponent />, document.getElementById('root'));
 

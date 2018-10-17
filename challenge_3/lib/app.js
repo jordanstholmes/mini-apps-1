@@ -1,7 +1,8 @@
 "use strict";
 
-const React = require('react');
-
-function testComponent() {
-  return React.createElement("h1", null, "I am a test react element");
+function TestComponent() {
+  return React.createElement("h1", null, "Now I say something different");
 }
+
+ReactDOM.render(React.createElement(TestComponent, null), document.getElementById('root'));
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL2NsaWVudC9hcHAuanN4Il0sIm5hbWVzIjpbIlRlc3RDb21wb25lbnQiLCJSZWFjdERPTSIsInJlbmRlciIsImRvY3VtZW50IiwiZ2V0RWxlbWVudEJ5SWQiXSwibWFwcGluZ3MiOiI7O0FBQ0EsU0FBU0EsYUFBVCxHQUF5QjtBQUN2QixTQUNFLGdFQURGO0FBR0Q7O0FBRURDLFFBQVEsQ0FBQ0MsTUFBVCxDQUFnQixvQkFBQyxhQUFELE9BQWhCLEVBQW1DQyxRQUFRLENBQUNDLGNBQVQsQ0FBd0IsTUFBeEIsQ0FBbkMiLCJzb3VyY2VzQ29udGVudCI6WyJcbmZ1bmN0aW9uIFRlc3RDb21wb25lbnQoKSB7XG4gIHJldHVybiAoXG4gICAgPGgxPk5vdyBJIHNheSBzb21ldGhpbmcgZGlmZmVyZW50PC9oMT5cbiAgKTtcbn1cblxuUmVhY3RET00ucmVuZGVyKDxUZXN0Q29tcG9uZW50IC8+LCBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncm9vdCcpKTtcblxuIl19
