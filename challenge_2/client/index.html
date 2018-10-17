@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <title>JSON to CSV Converter</title>
   <script
-  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
   </head>
 
@@ -16,11 +16,11 @@
       <!-- <label for='json-input'>Input JSON</label> -->
       <button type='submit'>Convert</button>
       <br>
-      <input type='file' name='jsonToConvert'/>
+      <input type='file' id='file-input' name='jsonToConvert'/>
     </form>
-  <textarea style='height:200px;width:400px'></textarea>
+  <textarea id='display' style='height:200px;width:400px'></textarea>
 
-  <!-- <script src='app.js'></script> -->
+  <script src='app.js'></script>
   </body>
 
 </html>
