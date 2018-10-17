@@ -13,7 +13,7 @@ const templateStr =
 
     <form action='/handle-json' method='post' enctype="multipart/form-data">
       <button type='submit'>Convert</button><br>
-      <textarea type='text' name='jsonToConvert' style='height:200px;width:400px'></textarea>
+      <input type='file' name='jsonToConvert'/>
     </form>
 
     <textarea style='height:200px;width:400px'><%= csv %></textarea>

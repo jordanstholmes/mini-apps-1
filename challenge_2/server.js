@@ -13,8 +13,9 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, 'client')));
 
-app.post('/handle-json', upload.none(), (req, res, next) => {
-  const csv = JSONConverter(req.body.jsonToConvert);
+app.post('/handle-json', upload.single('jsonToConvert'), (req, res, next) => {
+  // console.log(req.file.buffer.toString());
+  const csv = JSONConverter(req.file.buffer.toString());
   
   res.send(template({csv}));
   // res.end();
