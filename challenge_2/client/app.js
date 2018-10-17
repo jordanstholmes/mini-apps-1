@@ -8,52 +8,37 @@ const options = {
 
 const reader = new FileReader();
 reader.onloadend = (e) => {
-  // console.log(e.target.result);
+  var downloadURL;
   options.data = e.target.result;
   $.ajax(options)
   .done(results => {
-    $display = $('#display').text(results);
+    downloadURL = results;
+    $.ajax({
+      url: downloadURL,
+      data: undefined,
+      method: 'GET'
+    })
+    .done(results => {
+      $display = $('#display').text(results);
+      $('#links-container').append(`<a href=${downloadURL}>Download CSV file</a>`);
+    })
   });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // var $convertBtn = $('#convert-btn');
 
-  // $convertBtn.click((e) => {
-
-  // })
   var $display = $('#display');
   var $converterForm = $('#json-converter');
   var fileInput = document.getElementById('file-input');
 
   $converterForm.submit( e => {
     var file = fileInput.files[0];
-    // console.log('FILE INPUT', fileInput.files[0]);
     reader.readAsText(file);
 
-
-    // var formData = $('#json-converter').serialize();
-    // console.log('FORM DATA', formData);
-
-    // var $file = $('input:file');
-    // console.log($file);
-
-    // options.data = $file;
-    // console.log('form submited');
-
-    // var request = $.ajax(options);
-
-    // request.done((result) => {
-    //   console.log(result);
-    // });
-
     e.preventDefault();
-    // console.log($file);
 
     
   });
-  // console.log($converterForm);
-
 });
 
 
