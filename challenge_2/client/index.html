@@ -4,16 +4,21 @@
   <head>
   <meta charset="UTF-8">
   <title>JSON to CSV Converter</title>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script>
   </head>
 
   <body>
 
-    <form action='/handle-json' method='post' enctype="multipart/form-data">
+    <form id='json-converter' action='/handle-json' method='post' enctype="multipart/form-data">
       <!-- <label for='json-input'>Input JSON</label> -->
       <button type='submit'>Convert</button><br>
       <input type='file' name='jsonToConvert'/> 
     </form>
 
+  <!-- <script src='app.js'></script> -->
   </body>
 
 </html>
