@@ -1,7 +1,14 @@
+const formTypes = {
+  'Account Creation': ['Name', 'Email', 'Password'],
+  'Address': ['Line 1', 'Line 2', 'City', 'State', 'Zipcode', 'Phone Number'],
+  'Credit Card Information': ['Card Number', 'Exp', 'CVV', 'Zip Code']
+}
+
 class App extends React.Component{
   constructor(props) {
     super(props);
-    this.forms = ['', <Form1 />, <Form2 />, <Form3 />, <ConfirmationPage />];
+    // this.forms = ['', <Form1 />, <Form2 />, <Form3 />, <ConfirmationPage />];
+    this.formNames = ['', 'Account Creation', 'Address', 'Credit Card Information'];
     this.buttons = ['Checkout', 'Next', 'Next', 'Next', 'Purchase'];
     this.maxFormNum = 4;
     this.state = {form: 0};
@@ -19,12 +26,45 @@ class App extends React.Component{
           buttonClickHandler={this.buttonClickHandler.bind(this)}
           buttonText={this.buttons[this.state.form]} />
         {
-          this.forms[this.state.form]
+          this.state.form !== 0 && this.state.form !== this.maxFormNum ? <Form formName={this.formNames[this.state.form]} /> : ''
+        }
+        {
+          this.state.form === this.maxFormNum ? <ConfirmationPage /> : ''
         }
       </div>
     );
   }
 }
+
+function Form(props) {
+  const formElements = formTypes[props.formName].map((labelText) => {
+    return (
+      <div>
+        <label>{labelText}</label>
+        <input type='text'></input>
+      </div>
+    );
+  });
+
+  return (
+    <form>
+      <h2>{props.formName}</h2>
+      {formElements}
+    </form>
+  );
+}
+
+// function Form(props) {
+//   return (
+//     <form>
+//       <h2>Account Creation</h2>
+//       <label>Name:</label><input type='text'></input>
+//       <label>Email:</label><input type='text'></input>
+//       <label>Password:</label><input type='text'></input>
+//     </form>
+//   );
+// }
+
 
 function NavButton(props) {
   return (
@@ -34,42 +74,20 @@ function NavButton(props) {
   );
 }
 
-function Form1(props) {
-  return (
-    <form>
-      <h2>Account Creation</h2>
-      <label>Name:</label><input type='text'></input>
-      <label>Email:</label><input type='text'></input>
-      <label>Password:</label><input type='text'></input>
-    </form>
-  );
-}
 
-function Form2(props) {
-  return (
-    <form>
-      <h2>Address</h2>
-      <label>Line 1:</label><input type='text'></input>
-      <label>Line 2:</label><input type='text'></input>
-      <label>City:</label><input type='text'></input>
-      <label>State:</label><input type='text'></input>
-      <label>Zipcode:</label><input type='text'></input>
-      <label>Phone Number:</label><input type='text'></input>
-    </form>
-  );
-}
-
-function Form3(props) {
-  return (
-    <form>
-      <h2>Credit Card Information</h2>
-      <label>Card Number:</label><input type='text'></input>
-      <label>Exp:</label><input type='text'></input>
-      <label>CVV:</label><input type='text'></input>
-      <label>Zip Code:</label><input type='text'></input>
-    </form>
-  );
-}
+// function Form2(props) {
+//   return (
+//     <form>
+//       <h2>Address</h2>
+//       <label>Line 1:</label><input type='text'></input>
+//       <label>Line 2:</label><input type='text'></input>
+//       <label>City:</label><input type='text'></input>
+//       <label>State:</label><input type='text'></input>
+//       <label>Zipcode:</label><input type='text'></input>
+//       <label>Phone Number:</label><input type='text'></input>
+//     </form>
+//   );
+// }
 
 function ConfirmationPage(props) {
   return (
