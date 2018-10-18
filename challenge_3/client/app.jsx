@@ -1,8 +1,8 @@
-// const formTypes = {
-//   'Account Creation': ['Name', 'Email', 'Password'],
-//   'Address': ['Line 1', 'Line 2', 'City', 'State', 'Zipcode', 'Phone Number'],
-//   'Credit Card Information': ['Card Number', 'Exp', 'CVV', 'Zip Code']
-// }
+const formTypes = {
+  'Account Creation': ['Name', 'Email', 'Password'],
+  'Address': ['Line 1', 'Line 2', 'City', 'State', 'Zipcode', 'Phone Number'],
+  'Credit Card Information': ['Card Number', 'Exp', 'CVV', 'Zip Code']
+}
 
 class App extends React.Component{
   constructor(props) {
@@ -36,20 +36,22 @@ class App extends React.Component{
 }
 
 function Form(props) {
-  const formElements = formTypes[props.formName].map((labelText) => {
-    return (
-      <div>
-        <label>{labelText}</label>
-        <input type='text'></input>
-      </div>
-    );
-  });
+  const formFields = formTypes[props.formName].map(labelText => <FormField labelText={labelText} /> );
 
   return (
-    <form>
+    <form id='input-form'>
       <h2>{props.formName}</h2>
-      {formElements}
+      {formFields}
     </form>
+  );
+}
+
+function FormField(props) {
+  return (
+    <div>
+      <label>{props.labelText}</label>
+      <input type='text'></input>
+    </div>
   );
 }
 
