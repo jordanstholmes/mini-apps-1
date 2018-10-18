@@ -21,12 +21,8 @@ class App extends React.Component{
   render() {
     return (
       <div id='app'>
-        <NavButton
-          buttonClickHandler={this.buttonClickHandler.bind(this)}
-          buttonText={this.buttons[this.state.form]} />
-        {
-          this.state.form !== 0 && this.state.form !== this.maxFormNum ? <Form formName={this.formNames[this.state.form]} /> : ''
-        }
+        <button onClick={this.buttonClickHandler.bind(this)}>{this.buttons[this.state.form]}</button>
+        <Form formName={this.formNames[this.state.form]}/>
         {
           this.state.form === this.maxFormNum ? <ConfirmationPage /> : ''
         }
@@ -36,7 +32,7 @@ class App extends React.Component{
 }
 
 function Form(props) {
-  const formFields = formTypes[props.formName].map(labelText => <FormField labelText={labelText} /> );
+  const formFields = props.formName ? formTypes[props.formName].map(labelText => <FormField labelText={labelText} /> ) : '';
 
   return (
     <form id='input-form'>
@@ -51,14 +47,6 @@ function FormField(props) {
     <div>
       <label>{props.labelText}</label>
       <input type='text'></input>
-    </div>
-  );
-}
-
-function NavButton(props) {
-  return (
-    <div>
-      <button onClick={props.buttonClickHandler}>{props.buttonText}</button>
     </div>
   );
 }
