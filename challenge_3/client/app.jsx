@@ -1,42 +1,76 @@
-const formTypes = {
-  'Account Creation': ['Name', 'Email', 'Password'],
-  'Address': ['Line 1', 'Line 2', 'City', 'State', 'Zipcode', 'Phone Number'],
-  'Credit Card Information': ['Card Number', 'Exp', 'CVV', 'Zip Code']
-}
+// const formTypes = {
+//   CHECOUT: 0,
+//   ACCOUNT: 1,
+//   ADDRESS: 2,
+//   CREDIT: 3,
+//   CONFIRM: 4
+// };
+
+// const formTemplates = {
+//   button: ['Checkout', 'Next', 'Next', 'Next', 'Purchase'],
+//   header: ['', 'Account Creation', 'Address', 'Credit Card Information', 'Confirm Information'],
+//   fields: [
+//     {},
+//     {name: 'Name', email: 'Email', password: 'Password'},
+//     {address: {line1: 'Line 1', line2: 'Line 2', city: 'City', state: 'State', zip: 'Zip Code', phone: 'Phone'}},
+//     {cc: {number: 'Card Number', exp: 'Expiration Date', cvv: 'CVV', zip: 'Billing Zip'}},
+//     {}
+//   ]
+// };
 
 class App extends React.Component{
   constructor(props) {
     super(props);
-    this.formNames = ['', 'Account Creation', 'Address', 'Credit Card Information'];
     this.buttons = ['Checkout', 'Next', 'Next', 'Next', 'Purchase'];
-    this.maxFormNum = 4;
-    this.state = {form: 0};
+    this.headers = ['', 'Account Creation', 'Address', 'Credit Card Information', 'Confirm Information'];
+    this.fieldSets = [
+      undefined,
+      {name: 'Name', email: 'Email', password: 'Password'},
+      {address: {line1: 'Line 1', line2: 'Line 2', city: 'City', state: 'State', zip: 'Zip Code', phone: 'Phone'}},
+      {cc: {number: 'Card Number', exp: 'Expiration Date', cvv: 'CVV', zip: 'Billing Zip'}},
+      undefined
+    ]
+    this.state = {num: 0};
   }
 
   buttonClickHandler() {
-    const nextFormNum = this.state.form === this.maxFormNum ? 0 : this.state.form + 1;
-    this.setState({ form: nextFormNum }); 
+    const nextFormNum = this.state.num === this.headers.length - 1 ? 0 : this.state.num + 1;
+    this.setState({ num: nextFormNum }); 
   }
 
   render() {
+    const formNum = this.state.num;
+    console.log('IN APP:', this.fieldSets[formNum]);
+
     return (
       <div id='app'>
-        <button onClick={this.buttonClickHandler.bind(this)}>{this.buttons[this.state.form]}</button>
-        <Form formName={this.formNames[this.state.form]}/>
+        <button onClick={this.buttonClickHandler.bind(this)}>{this.buttons[formNum]}</button>
+        <Form header={this.headers[formNum]} fields={this.fieldSets[formNum]}/>
         {
-          this.state.form === this.maxFormNum ? <ConfirmationPage /> : ''
+          formNum === this.headers.length - 1 ? <ConfirmationPage /> : ''
         }
       </div>
     );
   }
 }
 
+/*
+Refactor Form into a class component
+*/
+
 function Form(props) {
-  const formFields = props.formName ? formTypes[props.formName].map(labelText => <FormField labelText={labelText} /> ) : '';
+  var formFields = '';
+
+  if (props.fields) {
+    formFields = [];
+    for (var field in props.fields) {
+      formFields.push(<FormField labelText={props.fields[field]} />);
+    }
+  }
 
   return (
     <form id='input-form'>
-      <h2>{props.formName}</h2>
+      <h2>{props.header}</h2>
       {formFields}
     </form>
   );

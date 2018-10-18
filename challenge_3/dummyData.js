@@ -4,16 +4,17 @@ module.exports = [
     email: 'ted@gmail.com', 
     password:'123',
     address: {
-      line: '',
+      line1: '',
       line2: '',
       city: 'SF',
       state: 'CA',
-      zip: 94901
+      zip: 94901,
+      phone: 4157406163
     },
     cc: {
       number: 92572093,
       exp: '11/21/2019',
-      CVV: 214,
+      cvv: 214,
       zip: 94901
     }
   },
