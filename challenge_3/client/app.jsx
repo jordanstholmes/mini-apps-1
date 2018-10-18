@@ -1,8 +1,8 @@
-const formTypes = {
-  'Account Creation': ['Name', 'Email', 'Password'],
-  'Address': ['Line 1', 'Line 2', 'City', 'State', 'Zipcode', 'Phone Number'],
-  'Credit Card Information': ['Card Number', 'Exp', 'CVV', 'Zip Code']
-}
+// const formTypes = {
+//   'Account Creation': ['Name', 'Email', 'Password'],
+//   'Address': ['Line 1', 'Line 2', 'City', 'State', 'Zipcode', 'Phone Number'],
+//   'Credit Card Information': ['Card Number', 'Exp', 'CVV', 'Zip Code']
+// }
 
 class App extends React.Component{
   constructor(props) {
@@ -87,6 +87,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
 /****************************************************
 CONTROLLERS
 ****************************************************/
+
 
 
 

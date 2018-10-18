@@ -1,2 +1,11 @@
 "use strict";
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZXNDb250ZW50IjpbXX0=
+
+const Controller = {
+  options: {
+    url: 'http://localhost:3000/transactions',
+    method: 'POST',
+    contentType: 'multipart/form-data'
+  },
+  sendFormData: () => {}
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL2NsaWVudC9jb250cm9sbGVycy5qcyJdLCJuYW1lcyI6WyJDb250cm9sbGVyIiwib3B0aW9ucyIsInVybCIsIm1ldGhvZCIsImNvbnRlbnRUeXBlIiwic2VuZEZvcm1EYXRhIl0sIm1hcHBpbmdzIjoiOztBQUFBLE1BQU1BLFVBQVUsR0FBRztBQUNqQkMsRUFBQUEsT0FBTyxFQUFFO0FBQ1BDLElBQUFBLEdBQUcsRUFBRSxvQ0FERTtBQUVQQyxJQUFBQSxNQUFNLEVBQUUsTUFGRDtBQUdQQyxJQUFBQSxXQUFXLEVBQUU7QUFITixHQURRO0FBTWpCQyxFQUFBQSxZQUFZLEVBQUUsTUFBTSxDQUVuQjtBQVJnQixDQUFuQiIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IENvbnRyb2xsZXIgPSB7XG4gIG9wdGlvbnM6IHtcbiAgICB1cmw6ICdodHRwOi8vbG9jYWxob3N0OjMwMDAvdHJhbnNhY3Rpb25zJyxcbiAgICBtZXRob2Q6ICdQT1NUJyxcbiAgICBjb250ZW50VHlwZTogJ211bHRpcGFydC9mb3JtLWRhdGEnXG4gIH0sXG4gIHNlbmRGb3JtRGF0YTogKCkgPT4ge1xuICAgIFxuICB9XG59Il19
