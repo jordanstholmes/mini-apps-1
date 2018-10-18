@@ -17,6 +17,21 @@
 //     {}
 //   ]
 // };
+const labelKey = {
+  name: 'Name',
+  email: 'Email',
+  password: 'Password',
+  line1: 'Line 1', 
+  line2: 'Line 2',
+  city: 'City', 
+  state: 'State', 
+  zip: 'Zip Code',
+  phone: 'Phone',
+  ccNumber: 'Card Number',
+  exp: 'Expiration Date',
+  cvv: 'CVV',
+  zip: 'Billing Zip'
+};
 
 class App extends React.Component{
   constructor(props) {
@@ -25,11 +40,11 @@ class App extends React.Component{
     this.headers = ['', 'Account Creation', 'Address', 'Credit Card Information', 'Confirm Information'];
     this.fieldSets = [
       undefined,
-      {name: 'Name', email: 'Email', password: 'Password'},
-      {address: {line1: 'Line 1', line2: 'Line 2', city: 'City', state: 'State', zip: 'Zip Code', phone: 'Phone'}},
-      {cc: {number: 'Card Number', exp: 'Expiration Date', cvv: 'CVV', zip: 'Billing Zip'}},
+      ['name', 'email', 'password'],
+      ['line1', 'line2', 'city', 'state', 'zip', 'phone'],
+      ['ccNumber', 'exp', 'cvv', 'zip'],
       undefined
-    ]
+    ];
     this.state = {num: 0};
   }
 
@@ -41,39 +56,44 @@ class App extends React.Component{
   render() {
     const formNum = this.state.num;
     console.log('IN APP:', this.fieldSets[formNum]);
+    console.log('HEADERS:', this.headers[formNum]);
+
 
     return (
       <div id='app'>
         <button onClick={this.buttonClickHandler.bind(this)}>{this.buttons[formNum]}</button>
-        <Form header={this.headers[formNum]} fields={this.fieldSets[formNum]}/>
-        {
-          formNum === this.headers.length - 1 ? <ConfirmationPage /> : ''
-        }
+        { this.fieldSets[formNum] ? <Form header={this.headers[formNum]} fields={this.fieldSets[formNum]}/> : <div></div> }
+        { formNum === this.headers.length - 1 ? <ConfirmationPage /> : <div></div> }
       </div>
     );
   }
 }
 
-/*
-Refactor Form into a class component
-*/
-
-function Form(props) {
-  var formFields = '';
-
-  if (props.fields) {
-    formFields = [];
-    for (var field in props.fields) {
-      formFields.push(<FormField labelText={props.fields[field]} />);
-    }
+class Form extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log('FORM PROPS:', props);
+    this.state = this.state = this.props.fields.reduce((acc, field) => {
+      acc[field] = '';
+      return acc;
+    }, {});
   }
 
-  return (
-    <form id='input-form'>
-      <h2>{props.header}</h2>
-      {formFields}
-    </form>
-  );
+  render() {
+
+    const formFields = [];
+    
+    for (var field in this.state) {
+      formFields.push(<FormField name={this.state[field]} labelText={labelKey[field]} />);
+    }
+
+    return (
+      <form id='input-form'>
+        <h2>{this.props.header}</h2>
+        {formFields}
+      </form>
+    );
+  }
 }
 
 function FormField(props) {
